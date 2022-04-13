@@ -42,16 +42,32 @@ with open('aws_soa_考古題_總題庫_csv.csv', newline='', encoding="utf-8") a
         d["question_attribute"] = [row[8], row[9], row[10]]
 # 儲存 json
 
-        with open("ExamQuestionAwsSoa.json", 'a', encoding="utf-8") as fout:
+        with open("CloudMasterExamQuestionAwsSoa.json", 'a', encoding="utf-8") as fout:
             json.dump(d, fout, ensure_ascii=False)
             fout.write("\n")
 # 上傳 firestore
 
-        db.collection(u'ExamQuestionAwsSoa').document(str(i)).set(d)
+        db.collection(u'CloudMasterExamQuestionAwsSoa').document(str(i)).set(d)
         i += 1
         list_.append(d)
+
+# 都上傳完畢後，查看目前 Firestore 資料集 CloudMasterExamQuestionAwsSoa 有幾筆檔案
+exams_qa_ref = db.collection(u'CloudMasterExamQuestionAwsSoa')
+docs = exams_qa_ref.stream()
+n = 0
+for doc in docs:
+  n +=1
+print('總題數: ', n, '題')
+db.collection(u'CloudMasterExam').document(u'AwsSoa').set({
+  u'exam_name': u'CloudMasterExamQuestionAwsSoa',
+  u'deduct_point_amount': 1,
+  u'number_of_questions': n,
+  u'stat_name': u'CloudMasterExamQuestionAwsSoaUserStat'
+})
+
+
 # 儲存CSV
 
 df = pd.json_normalize(list_)
 
-df.to_csv("ExamQuestionAwsSoa.csv")
+df.to_csv("CloudMasterExamQuestionAwsSoa.csv")

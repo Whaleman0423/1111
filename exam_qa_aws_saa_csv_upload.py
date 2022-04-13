@@ -5,7 +5,7 @@ import pandas as pd
 from google.cloud import firestore
 
 
-# 使用前先改確認讀取的 csv 路徑、金鑰、專案id
+# 使用前先改確認讀取的 csv 路徑、金鑰、專案id、考試資料名
 
 # db = firestore.Client()
 db = firestore.Client.from_service_account_json("./cloud-master-3-29-cfb7e9371055.json", project='cloud-master-3-29')
@@ -43,16 +43,32 @@ with open('aws_saa_考古題_總題庫_csv.csv', newline='', encoding="utf-8") a
         d["question_attribute"] = [row[8], row[9], row[10]]
 # 儲存 json
 
-        with open("ExamQuestionAwsSaa.json", 'a', encoding="utf-8") as fout:
+        with open("CloudMasterExamQuestionAwsSaa.json", 'a', encoding="utf-8") as fout:
             json.dump(d, fout, ensure_ascii=False)
             fout.write("\n")
 # 上傳 firestore
         
-        db.collection(u'ExamQuestionAwsSaa').document(str(i)).set(d)
+        db.collection(u'CloudMasterExamQuestionAwsSaa').document(str(i)).set(d)
         i += 1
         list_.append(d)
+
+# 都上傳完畢後，查看目前 Firestore 資料集 CloudMasterExamQuestionAwsSaa 有幾筆檔案
+exams_qa_ref = db.collection(u'CloudMasterExamQuestionAwsSaa')
+docs = exams_qa_ref.stream()
+n = 0
+for doc in docs:
+  n +=1
+print('總題數: ', n, '題')
+db.collection(u'CloudMasterExam').document(u'AwsSaa').set({
+  u'exam_name': u'CloudMasterExamQuestionAwsSaa',
+  u'deduct_point_amount': 1,
+  u'number_of_questions': n,
+  u'stat_name': u'CloudMasterExamQuestionAwsSaaUserStat'
+})
+
+
 # 儲存CSV
 
 df = pd.json_normalize(list_)
 
-df.to_csv("ExamQuestionAwsSaa.csv")
+df.to_csv("CloudMasterExamQuestionAwsSaa.csv")
