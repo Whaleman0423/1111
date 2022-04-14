@@ -84,10 +84,10 @@ with open('test0401.json', 'r', encoding='utf-8') as file:
             fout.write("\n")
 
         # 成就
-        with open("ExamQuestionAwsSaaUserStat.json", 'a', encoding="utf-8") as fout:
+        with open("CloudMasterExamQuestionAwsSaaUserStat.json", 'a', encoding="utf-8") as fout:
             json.dump(saa_user_stat, fout, ensure_ascii=False, sort_keys=True, default=str)
             fout.write("\n")
-        with open("ExamQuestionAwsSoaUserStat.json", 'a', encoding="utf-8") as fout:
+        with open("CloudMasterExamQuestionAwsSoaUserStat.json", 'a', encoding="utf-8") as fout:
             json.dump(soa_user_stat, fout, ensure_ascii=False, sort_keys=True, default=str)
             fout.write("\n")
 
@@ -96,8 +96,8 @@ with open('test0401.json', 'r', encoding='utf-8') as file:
         db.collection(u'CloudMasterUser').document(user_dict['user_id']).set(user_dict)
 
         # 成就
-        db.collection(u'ExamQuestionAwsSaaUserStat').document(line_bot_user_dict['line_user_id']).set(saa_user_stat)
-        db.collection(u'ExamQuestionAwsSoaUserStat').document(line_bot_user_dict['line_user_id']).set(soa_user_stat)
+        db.collection(u'CloudMasterExamQuestionAwsSaaUserStat').document(line_bot_user_dict['line_user_id']).set(saa_user_stat)
+        db.collection(u'CloudMasterExamQuestionAwsSoaUserStat').document(line_bot_user_dict['line_user_id']).set(soa_user_stat)
 
         
     # csv 路徑
@@ -109,7 +109,7 @@ with open('test0401.json', 'r', encoding='utf-8') as file:
 
     # 成就
     saa_user_stat_df = pd.json_normalize(saa_stat)
-    saa_user_stat_df.to_csv("ExamQuestionAwsSaaUserStat.csv")
+    saa_user_stat_df.to_csv("CloudMasterExamQuestionAwsSaaUserStat.csv")
 
     soa_user_stat_df = pd.json_normalize(soa_stat)
-    soa_user_stat_df.to_csv("ExamQuestionAwsSoaUserStat.csv")
+    soa_user_stat_df.to_csv("CloudMasterExamQuestionAwsSoaUserStat.csv")
