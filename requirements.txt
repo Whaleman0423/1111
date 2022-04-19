@@ -1,6 +1,4 @@
-functions-framework==3.0.0
-flask==2.0.2
-google-cloud-error-reporting==1.4.1
+line-bot-sdk
+google-cloud-firestore
 google-cloud-storage
-flanker==0.9.11
-beautifulsoup4==4.9.3
+pandas
