@@ -59,7 +59,7 @@ n = 0
 for doc in docs:
   n +=1
 print('總題數: ', n, '題')
-db.collection(u'CloudMasterExam').document(u'AwsSaa').set({
+db.collection(u'CloudMasterExam').document(u'CloudMasterExamQuestionAwsSaa').set({
   u'exam_name': u'CloudMasterExamQuestionAwsSaa',
   u'deduct_point_amount': 1,
   u'number_of_questions': n,
