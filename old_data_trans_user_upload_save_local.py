@@ -39,13 +39,13 @@ with open('test0401.json', 'r', encoding='utf-8') as file:
         line_bot_user_dict['line_user_is_blocked'] = line['line_user_is_blocked']
         line_bot_user_dict['line_user_enroll_date'] = line['line_user_enroll_date']
         line_bot_user_dict['line_rich_menu_link_custom_name'] = line['line_richmenu_link_custom_name']
-        line_bot_user_dict['line_user_email'] = ''
+        line_bot_user_dict['line_user_email'] = ' '
         line_bot_user_dict['line_user_other_info'] = line['line_user_other_info']
         line_bot_user_dict['user_system_language'] = line['aws_saa_certificate_history']['ccs_language']
 
         # user_dict
         user_dict['user_id'] = line_bot_user_dict['user_id']
-        user_dict['user_email'] = ''
+        user_dict['user_email'] = ' '
         user_dict['user_point'] = int(line['aws_saa_certificate_history']['payment_question_quota']) + int(line['aws_sysops_certificate_history']['payment_question_quota'])
         user_dict['user_name'] = line['line_user_nickname']
         user_dict['user_age'] = 999
