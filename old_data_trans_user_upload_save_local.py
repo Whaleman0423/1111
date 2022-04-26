@@ -34,7 +34,7 @@ with open('test0401.json', 'r', encoding='utf-8') as file:
         line_bot_user_dict['line_channel_id'] = line['line_channel_id']
         line_bot_user_dict['line_user_nick_name'] = line['line_user_nickname']
         line_bot_user_dict['line_user_status'] = line['line_user_status']
-        line_bot_user_dict['line_user_pic_url'] = line['line_user_pic_url'].replace('cloud-certificate-bot-user-info/', gcp_project_id+"/line-bot/users/").replace("pic.png", "img.png") if line['line_user_pic_url'] != ' ' else ' '
+        line_bot_user_dict['line_user_pic_url'] = line['line_user_pic_url'].replace('cloud-certificate-bot-user-info/', gcp_project_id+"line-bot/users/").replace("pic.png", "img.png") if line['line_user_pic_url'] != ' ' else ' '
         line_bot_user_dict['line_default_language'] = line['line_user_system_language']
         line_bot_user_dict['line_user_is_blocked'] = line['line_user_is_blocked']
         line_bot_user_dict['line_user_enroll_date'] = line['line_user_enroll_date']
