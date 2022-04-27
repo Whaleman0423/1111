@@ -1,4 +1,4 @@
-line-bot-sdk
-google-cloud-firestore
-google-cloud-storage
-pandas
+line-bot-sdk==2.2.1
+google-cloud-firestore==2.4.0
+google-cloud-storage==2.3.0
+pandas==1.4.2
