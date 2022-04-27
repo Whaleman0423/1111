@@ -15,7 +15,7 @@ import json
 def download_blob(bucket_name, source_blob_name, destination_file_name):
     storage_client = storage.Client()
 
-    bucket = storage_client.create_bucket(bucket_name)
+    bucket = storage_client.bucket(bucket_name)
     # 值區的目錄
     blob = bucket.blob(source_blob_name)
     # 本地目錄
@@ -41,6 +41,7 @@ def list_blobs_with_prefix(bucket_name, prefix, delimiter=None):
 def get_all_line_user_ids():
     line_user_ids_list = []
     with open('CloudMasterLineBotUser.json', 'r', encoding='utf-8') as file:
+
         for line in file:
             line = json.loads(line)
             line_user_ids_list.append(line['line_user_id'])
@@ -52,10 +53,13 @@ def get_all_line_user_ids():
 
 bucket_name = ""
 line_user_ids_list = get_all_line_user_ids()
+os.mkdir("line-bot")
+os.mkdir("line-bot/users")
 
 for line_user_id in line_user_ids_list:
+    os.mkdir("line-bot/users/"+line_user_id)
     blob_path = list_blobs_with_prefix(bucket_name, line_user_id+"/")
-
+    print(line_user_id)
     if blob_path:
         download_blob(bucket_name, blob_path, "line-bot/users/"+line_user_id+"/user_img.png")
 
