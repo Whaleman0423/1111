@@ -26,9 +26,11 @@ with open('aws_soa_考古題_總題庫_csv.csv', newline='', encoding="utf-8") a
             continue
         # 建立用來放答案的清單
         question_choices = row[3: 7]
-        
+        x = ["A", "B", "C", "D"]
+        question_choices = ["(" + x[index] + ")" + i for index, i in enumerate(question_choices)]
         # 建立用來放中文答案的清單
         question_cn_choices = row[8: 12]
+        question_cn_choices = ["(" + x[index] + ")" + i for index, i in enumerate(question_cn_choices)]
 
         del row[3: 7]
         row.insert(3, question_choices)
