@@ -35,6 +35,7 @@ with open('aws_cp_考古題_總題庫_csv.csv', newline='', encoding="utf-8") as
     d["question_choices"].append({"answer_alias":"C","content":row[5].replace("(C)",""), "correct": False})
     d["question_choices"].append({"answer_alias":"D","content":row[6].replace("(D)",""), "correct": False})
     # 中文選項
+    d["question_cn_choices"] = []
     d["question_cn_choices"].append({"answer_alias":"A","content":row[8].replace("(A)",""), "correct": False})
     d["question_cn_choices"].append({"answer_alias":"B","content":row[9].replace("(B)",""), "correct": False})
     d["question_cn_choices"].append({"answer_alias":"C","content":row[10].replace("(C)",""), "correct": False})
