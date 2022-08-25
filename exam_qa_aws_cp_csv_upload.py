@@ -6,8 +6,8 @@ from google.cloud import firestore
 
 # 使用前先改確認讀取的 csv 路徑、金鑰、專案id
 
-# db = firestore.Client()
-db = firestore.Client.from_service_account_json("./cloud-master-3-29-cfb7e9371055.json", project='cloud-master-3-29')
+db = firestore.Client()
+# db = firestore.Client.from_service_account_json("./cloud-master-3-29-cfb7e9371055.json", project='cloud-master-3-29')
 
 # 開啟 CSV 檔案
 with open('aws_cp_考古題_總題庫_csv.csv', newline='', encoding="utf-8") as csvfile:
@@ -55,7 +55,7 @@ with open('aws_cp_考古題_總題庫_csv.csv', newline='', encoding="utf-8") as
         d["question_cn_choices"][3]["correct"] = True
     d["detail_explain"] = row[12]
     d["expert_comment"] = row[13]
-    d["question_attribute"] = [row[14], row[15], row[16]]
+    d["question_attribute"] = [row[14]]
 
 # 儲存 json
     with open("CloudMasterExamQuestionAwsCp.json", 'a', encoding="utf-8") as fout:
