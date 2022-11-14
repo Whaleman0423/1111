@@ -5,8 +5,8 @@ import json
 
 def revise_firestore_user_stat_doc_id(user_stat_table_name):
     # 獲得資料集的所有文件內容
-    # db = firestore.Client()
-    db = firestore.Client.from_service_account_json("cloud-master-test0426-f3036b7d84cb.json", project='cloud-master-test0426')
+    db = firestore.Client()
+    # db = firestore.Client.from_service_account_json("cloud-master-test0426-f3036b7d84cb.json", project='cloud-master-test0426')
  
     # 連接 userStat 資料集
     users_ref = db.collection(user_stat_table_name)  # CloudMasterExamQuestionAwsSaaUserStat 資料集
@@ -37,4 +37,4 @@ def revise_firestore_user_stat_doc_id(user_stat_table_name):
         i += 1
         print(i)
 
-revise_firestore_user_stat_doc_id(user_stat_table_name = "CloudMasterExamQuestionAwsSoaUserStat")
+revise_firestore_user_stat_doc_id(user_stat_table_name = "CloudMasterExamQuestionAwsSaaUserStat")
