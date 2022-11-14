@@ -17,7 +17,7 @@ def revise_firestore_user_stat_doc_id(user_stat_table_name):
         # print(f'{doc.id} => {doc.to_dict()}')
         # break
         line_user_id = doc.id
-        if line_user_id.startswith('U'):
+        if not line_user_id.startswith('U'):
             continue
         user_stat_dict = doc.to_dict()
         
